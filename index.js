@@ -122,7 +122,7 @@ function AmconvertNumberToWord(numberVal) {
     "ዘጠኝ",
     "አስር",
   ];
-  const tens = ["አስራ", "ሀያ", "ሰላሳ", "አርባ", "ሀምሳ", "ስልሳ", "ሰባ", "ሰማንያ", "ዘጠና"];
+  const tens = ["አስር", "ሀያ", "ሰላሳ", "አርባ", "ሀምሳ", "ስልሳ", "ሰባ", "ሰማንያ", "ዘጠና"];
 
   let wordValue = "";
 
@@ -148,7 +148,7 @@ function AmconvertNumberToWord(numberVal) {
       part %= 100;
     }
 
-    if (part >= 10) {
+    if (part > 10) {
       if (part % 10 !== 0) {
         wordValue += tens[Math.floor(part / 10) - 1] + " ";
         wordValue += ones[(part % 10) - 1] + " ";

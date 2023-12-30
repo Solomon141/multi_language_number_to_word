@@ -1,4 +1,5 @@
 
+
 function convertNumberToWord(numberVal) {
   const powers = ["Thousand ", "Million ", "Billion "];
   const ones = [
@@ -253,3 +254,82 @@ exports.OrNumberToWord = (theoriginalnumber) => {
 
   return OrnewText;
 };
+
+function TgconvertNumberToWord(numberVal) {
+  const powers = ["ሽሕ ", "ሚልየን ", "ቢልየን "];
+  const ones = [
+    "ሓደ",
+    "ክልተ",
+    "ሰለስተ",
+    "አርባዕተ",
+    "ሓሙሽተ",
+    "ሽዱሽተ",
+    "ሸውዓተ",
+    "ሸሞንተ",
+    "ትሸዓተ",
+    "ዓሰርተ",
+  ];
+  const tens = ["ዓሰርተ", "ዒስራ", "ሰላሳ", "አርበዓ", "ሓምሳ", "ስልሳ", "ሰብዓ", "ሰማንያ", "ቴስዓ"];
+
+  let wordValue = "";
+
+  if (numberVal === 0) return "ዜሮ";
+  if (numberVal < 0) {
+    wordValue = "አሉታዊ ";
+    numberVal = -numberVal;
+  }
+
+  const partStack = [0, 0, 0, 0];
+  let partNdx = 0;
+
+  while (numberVal > 0) {
+    partStack[partNdx++] = numberVal % 1000;
+    numberVal = Math.floor(numberVal / 1000);
+  }
+
+  for (let i = 3; i >= 0; i--) {
+    let part = partStack[i];
+
+    if (part >= 100) {
+      wordValue += ones[Math.floor(part / 100) - 1] + " ሚአቲ ";
+      part %= 100;
+    }
+
+    if (part > 10) {
+      if (part % 10 !== 0) {
+        wordValue += tens[Math.floor(part / 10) - 1] + " ";
+        wordValue += ones[(part % 10) - 1] + " ";
+      } else {
+        wordValue += tens[Math.floor(part / 10) - 2] + " ";
+      }
+    } else if (part > 0) {
+      wordValue += ones[part - 1] + " ";
+    }
+
+    if (part !== 0 && i > 0) wordValue += powers[i - 1];
+  }
+
+  return wordValue.trim();
+}
+
+exports.TgNumberToWord = (theoriginalnumber) => {
+  let TgnewText = "";
+  function isFloat(n) {
+    return n === +n && n !== (n | 0);
+  }
+  if (isFloat(theoriginalnumber)) {
+    let strnum = theoriginalnumber.toString();
+    let dotindex = strnum.indexOf(".");
+
+    let firstHalf = strnum.substring(0, dotindex);
+    let secondHalf = strnum.substring(dotindex + 1);
+    TgnewText = TgconvertNumberToWord(firstHalf);
+    TgnewText =
+      TgnewText + " ቅርሽን " + TgconvertNumberToWord(secondHalf) + " ሳንቲም ጥራሕ";
+  } else {
+    TgnewText = TgconvertNumberToWord(theoriginalnumber) + " ቅርሺ ጥራሕ";
+  }
+
+  return TgnewText;
+};
+

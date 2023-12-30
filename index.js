@@ -115,9 +115,9 @@ function AmconvertNumberToWord(numberVal) {
 
   let wordValue = "";
 
-  if (numberVal === 0) return "zero";
+  if (numberVal === 0) return "ዜሮ";
   if (numberVal < 0) {
-    wordValue = "NEGATIVE ";
+    wordValue = "አሉታዊ ";
     numberVal = -numberVal;
   }
 
@@ -194,9 +194,9 @@ function OrconvertNumberToWord(numberVal) {
 
   let wordValue = "";
 
-  if (numberVal === 0) return "zero";
+  if (numberVal === 0) return "zeeroo";
   if (numberVal < 0) {
-    wordValue = "NEGATIVE ";
+    wordValue = "Nagatiiva ";
     numberVal = -numberVal;
   }
 
@@ -212,7 +212,7 @@ function OrconvertNumberToWord(numberVal) {
     let part = partStack[i];
 
     if (part >= 100) {
-      wordValue += ones[Math.floor(part / 100) - 1] + " መቶ ";
+      wordValue += ones[Math.floor(part / 100) - 1] + " Dhibba ";
       part %= 100;
     }
 
@@ -246,7 +246,7 @@ exports.OrNumberToWord = (theoriginalnumber) => {
     let secondHalf = strnum.substring(dotindex + 1);
     OrnewText = OrconvertNumberToWord(firstHalf);
     OrnewText =
-      OrnewText + " ብር ከ " + OrconvertNumberToWord(secondHalf) + " Saantima tokko qofa";
+      OrnewText + " Meetii irraa " + OrconvertNumberToWord(secondHalf) + " Saantima tokko qofa";
   } else {
     OrnewText = OrconvertNumberToWord(theoriginalnumber) + " Meetii qofa";
   }

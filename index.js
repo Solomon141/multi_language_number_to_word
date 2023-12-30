@@ -111,7 +111,7 @@ function AmconvertNumberToWord(numberVal) {
     "ዘጠኝ",
     "አስር",
   ];
-  const tens = ["አስር", "ሀያ", "ሰላሳ", "አርባ", "ሀምሳ", "ስልሳ", "ሰባ", "ሰማንያ", "ዘጠና"];
+  const tens = ["አስራ", "ሀያ", "ሰላሳ", "አርባ", "ሀምሳ", "ስልሳ", "ሰባ", "ሰማንያ", "ዘጠና"];
 
   let wordValue = "";
 

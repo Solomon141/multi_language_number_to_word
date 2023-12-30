@@ -1,14 +1,3 @@
-exports.isHundred = (number) => {
-  if (number === 100) {
-    return "One Hundred";
-  } else {
-    return "Other than Hundred";
-  }
-};
-
-exports.sayhi = (name) => {
-  return "hi " + name;
-};
 
 function convertNumberToWord(numberVal) {
   const powers = ["Thousand ", "Million ", "Billion "];
@@ -184,4 +173,83 @@ exports.AmNumberToWord = (theoriginalnumber) => {
   }
 
   return AmnewText;
+};
+
+
+function OrconvertNumberToWord(numberVal) {
+  const powers = ["Shi ", "Miliyoona tokko ", "Biiliyoona tokko "];
+  const ones = [
+    "tokko",
+    "lama",
+    "sadii",
+    "afur",
+    "shan",
+    "ja'a",
+    "torba",
+    "Saddeet",
+    "sagal",
+    "kudhan",
+  ];
+  const tens = ["kudhan", "Diigdama", "soddoma", "afurtama", "Shantama", "jaatama", "torbaatama", "saddeettama", "sagaltama"];
+
+  let wordValue = "";
+
+  if (numberVal === 0) return "zero";
+  if (numberVal < 0) {
+    wordValue = "NEGATIVE ";
+    numberVal = -numberVal;
+  }
+
+  const partStack = [0, 0, 0, 0];
+  let partNdx = 0;
+
+  while (numberVal > 0) {
+    partStack[partNdx++] = numberVal % 1000;
+    numberVal = Math.floor(numberVal / 1000);
+  }
+
+  for (let i = 3; i >= 0; i--) {
+    let part = partStack[i];
+
+    if (part >= 100) {
+      wordValue += ones[Math.floor(part / 100) - 1] + " መቶ ";
+      part %= 100;
+    }
+
+    if (part > 10) {
+      if (part % 10 !== 0) {
+        wordValue += tens[Math.floor(part / 10) - 1] + " ";
+        wordValue += ones[(part % 10) - 1] + " ";
+      } else {
+        wordValue += tens[Math.floor(part / 10) - 2] + " ";
+      }
+    } else if (part > 0) {
+      wordValue += ones[part - 1] + " ";
+    }
+
+    if (part !== 0 && i > 0) wordValue += powers[i - 1];
+  }
+
+  return wordValue.trim();
+}
+
+exports.OrNumberToWord = (theoriginalnumber) => {
+  let OrnewText = "";
+  function isFloat(n) {
+    return n === +n && n !== (n | 0);
+  }
+  if (isFloat(theoriginalnumber)) {
+    let strnum = theoriginalnumber.toString();
+    let dotindex = strnum.indexOf(".");
+
+    let firstHalf = strnum.substring(0, dotindex);
+    let secondHalf = strnum.substring(dotindex + 1);
+    OrnewText = OrconvertNumberToWord(firstHalf);
+    OrnewText =
+      OrnewText + " ብር ከ " + OrconvertNumberToWord(secondHalf) + " Saantima tokko qofa";
+  } else {
+    OrnewText = OrconvertNumberToWord(theoriginalnumber) + " Meetii qofa";
+  }
+
+  return OrnewText;
 };

@@ -1,3 +1,5 @@
+
+
 function convertNumberToWord(numberVal) {
   const powers = ["Thousand ", "Million ", "Billion "];
   const ones = [
@@ -75,7 +77,7 @@ function convertNumberToWord(numberVal) {
   return wordValue.trim();
 }
 
-export const NumberToWord = (theoriginalnumber) => {
+exports.NumberToWord = (theoriginalnumber) => {
   let newText = "";
   function isFloat(n) {
     return n === +n && n !== (n | 0);
@@ -153,7 +155,7 @@ function AmconvertNumberToWord(numberVal) {
   return wordValue.trim();
 }
 
-export const AmNumberToWord = (theoriginalnumber) => {
+exports.AmNumberToWord = (theoriginalnumber) => {
   let AmnewText = "";
   function isFloat(n) {
     return n === +n && n !== (n | 0);
@@ -232,7 +234,7 @@ function OrconvertNumberToWord(numberVal) {
   return wordValue.trim();
 }
 
-export const OrNumberToWord = (theoriginalnumber) => {
+exports.OrNumberToWord = (theoriginalnumber) => {
   let OrnewText = "";
   function isFloat(n) {
     return n === +n && n !== (n | 0);
@@ -310,7 +312,7 @@ function TgconvertNumberToWord(numberVal) {
   return wordValue.trim();
 }
 
-export const TgNumberToWord = (theoriginalnumber) => {
+exports.TgNumberToWord = (theoriginalnumber) => {
   let TgnewText = "";
   function isFloat(n) {
     return n === +n && n !== (n | 0);
